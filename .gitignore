@@ -1,0 +1,8 @@
+*.py[co]
+.idea
+.vscode
+
+coverage.xml
+.coverage
+htmlcov
+.env
