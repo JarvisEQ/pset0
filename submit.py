@@ -8,6 +8,10 @@ from canvasapi.quiz import QuizSubmissionQuestion, QuizSubmission
 from environs import Env
 from git import Repo
 
+# problemset specific imports
+from pyramid import generate_pyramid
+from fibonacci import last_8, SummableSequence, optimized_fibonacci
+
 
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
@@ -15,8 +19,44 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     # It should be a list of dicts, one per q, each with an 'id' and 'answer' field
     # The format of the 'answer' field depends on the question type
     # You are responsible for collating questions with the functions to call - do not hard code
-    raise NotImplementedError()
+    
+    # answering fib/summable questions
+    answers = []
+
+    # optimised fibonacci questions
+    answers.append(last_8(optimized_fibonacci(100000)))
+    answers.append(last_8(optimized_fibonacci(234202)))
+    
+    # summable questions
+    seq = SummableSequence(0, 1)
+    answers.append(last_8(seq(100000)))
+
+    seq = SummableSequence(5, 7, 11)
+    answers.append(last_8(seq(100000)))
+
+    seq = SummableSequence(5, 98, 7, 35, 2)
+    answers.append(last_8(seq(603)))
+
+    seq = SummableSequence(8, 9, 99)
+    answers.append(last_8(seq(141515)))
+
+    questions[0]["answer"] = answers
+
+    # answering pyramid questions
+    answers = []
+
+    answers.append(generate_pyramid(24))
+    answers.append(generate_pyramid(53))
+    
+    questions[1]["answer"] = answers
+
+
+    # answering time question
+    questions[2]["answer"] = 1
+
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
+
+    return questions
 
 
 def get_submission_comments(repo: Repo, qsubmission: QuizSubmission) -> Dict:

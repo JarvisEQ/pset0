@@ -17,7 +17,19 @@ def print_pyramid(rows):
 
     :param int rows: total height
     """
+
+    # get a list representation of the pyramid
+    print_buffer = generate_pyramid(rows)
     
+    # print whatever is in the buffer
+    for item in print_buffer:
+        print(item)
+    
+    # not needed functionally, but nice for reading the code
+    return
+     
+def generate_pyramid(rows):
+
     # convert to int
     # needed due to command line args being strings instead of ints
     rows = int(rows)
@@ -53,14 +65,7 @@ def print_pyramid(rows):
         pyr_start = pyr_start - 1
         pyr_end = pyr_end + 1
     
-    # print whatever is in the buffer
-    for item in print_buffer:
-        print(item)
-    
-    # not needed functionally, but nice for reading the code
-    return
-     
-
+    return print_buffer
 
 
 if __name__ == "__main__":
