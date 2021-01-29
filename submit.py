@@ -20,6 +20,9 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     # The format of the 'answer' field depends on the question type
     # You are responsible for collating questions with the functions to call - do not hard code
     
+    # submission list
+    submission = []
+
     # answering fib/summable questions
     answers = []
 
@@ -40,23 +43,24 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     seq = SummableSequence(8, 9, 99)
     answers.append(last_8(seq(141515)))
 
-    questions[0]["answer"] = answers
+    tmp = {'id': questions[0].id, "answers": answers}
+    submission.append(tmp)
 
     # answering pyramid questions
     answers = []
 
     answers.append(generate_pyramid(24))
     answers.append(generate_pyramid(53))
-    
-    questions[1]["answer"] = answers
 
+    tmp = {'id': questions[0].id, "answers": answers}
+    submission.append(tmp)
 
     # answering time question
-    questions[2]["answer"] = 1
+    tmp = {'id': questions[0].id, "answers": 1}
+    submission.append(tmp)
 
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
-
-    return questions
+    return submission
 
 
 def get_submission_comments(repo: Repo, qsubmission: QuizSubmission) -> Dict:
