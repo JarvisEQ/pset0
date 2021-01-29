@@ -3,6 +3,14 @@ language: python
 python:
   - 3.8
 
+env:
+  global:
+    CANVAS_ASSIGNMENT_ID: 442683
+    CANVAS_COURSE_ID: 81475
+    CANVAS_QUIZ_ID: 20173
+    CANVAS_TOKEN: {get me}
+    CANVAS_URL: https://canvas.harvard.edu
+
 install:
   - pipenv install --dev --ignore-pipfile --deploy
 before_script: # code coverage tool
