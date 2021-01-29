@@ -56,7 +56,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     submission.append(tmp)
 
     # answering time question
-    tmp = {'id': questions[0].id, "answers": 1}
+    tmp = {'id': questions[0].id, "answers": 3268}
     submission.append(tmp)
 
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
