@@ -65,6 +65,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     answers["pyramid_53"] = hashlib.sha256(output.encode()).hexdigest()
 
     tmp = {'id': questions[1].id, "answers": answers}
+
     submission.append(tmp)
 
     # answering time question
