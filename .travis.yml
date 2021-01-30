@@ -8,7 +8,6 @@ env:
     CANVAS_ASSIGNMENT_ID: 442683
     CANVAS_COURSE_ID: 81475
     CANVAS_QUIZ_ID: 201703
-    CANVAS_TOKEN: 1875~iL4jRxbo1nfs8oL4263SUeaZ20a4GZj34TPDP0RKqPyD0vzEgL5usJ7XlqKhvvMo
     CANVAS_URL: https://canvas.harvard.edu
 
 install:
