@@ -24,33 +24,33 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     submission = []
 
     # answering fib/summable questions
-    answers = []
+    answers = {}
 
     # optimised fibonacci questions
-    answers.append(last_8(optimized_fibonacci(100000)))
-    answers.append(last_8(optimized_fibonacci(234202)))
+    answers["fib_100000"] = last_8(optimized_fibonacci(100000))
+    answers["fib_234202"] = last_8(optimized_fibonacci(234202))
     
     # summable questions
     seq = SummableSequence(0, 1)
-    answers.append(last_8(seq(100000)))
+    answers["fib_234202"] =last_8(seq(100000))
 
     seq = SummableSequence(5, 7, 11)
-    answers.append(last_8(seq(100000)))
+    answers["fib_234202"] = last_8(seq(100000))
 
     seq = SummableSequence(5, 98, 7, 35, 2)
-    answers.append(last_8(seq(603)))
+    answers["fib_234202"] = last_8(seq(603))
 
     seq = SummableSequence(8, 9, 99)
-    answers.append(last_8(seq(141515)))
+    answers["fib_234202"] = last_8(seq(141515))
 
     tmp = {'id': questions[0].id, "answers": answers}
     submission.append(tmp)
 
     # answering pyramid questions
-    answers = []
+    answers = {}
 
-    answers.append(generate_pyramid(24))
-    answers.append(generate_pyramid(53))
+    answers["pyramid_24"] = generate_pyramid(24)
+    answers["pyramid_53"] = append(generate_pyramid(53))
 
     tmp = {'id': questions[0].id, "answers": answers}
     submission.append(tmp)
