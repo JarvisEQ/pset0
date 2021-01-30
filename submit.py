@@ -44,7 +44,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     seq = SummableSequence(8, 9, 99)
     answers["summable_8_9_99_141515"] = last_8(seq(141515))
 
-    tmp = {'id': questions[0].id, "answers": answers}
+    tmp = {'id': questions[0].id, "answer": answers}
     submission.append(tmp)
 
     # answering pyramid questions
@@ -63,15 +63,15 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
         print_pyramid(53)
     std.seek(0)
     output = std.read()
-    output = hashlib.sha256(output.encode()).hexdigest()
+    output = hashlib.sha256(output.encode())
     answers["pyramid_53"] = output[:8]
 
-    tmp = {'id': questions[1].id, "answers": answers}
+    tmp = {'id': questions[1].id, "answer": answers}
 
     submission.append(tmp)
 
     # answering time question
-    tmp = {'id': questions[2].id, "answers": 3268}
+    tmp = {'id': questions[2].id, "answer": 3268}
     submission.append(tmp)
 
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
