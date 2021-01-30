@@ -67,6 +67,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     answers["pyramid_53"] = output[:8]
 
     tmp = {'id': questions[1].id, "answers": answers}
+
     submission.append(tmp)
 
     # answering time question
