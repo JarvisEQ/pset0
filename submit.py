@@ -2,6 +2,7 @@ import json
 import os
 from pprint import pprint
 from typing import List, Dict
+import hashlib
 
 from canvasapi import Canvas
 from canvasapi.quiz import QuizSubmissionQuestion, QuizSubmission
@@ -9,9 +10,9 @@ from environs import Env
 from git import Repo
 
 # problemset specific imports
-from pyramid import generate_pyramid
+from pyramid import print_pyramid
 from fibonacci import last_8, SummableSequence, optimized_fibonacci
-
+from test_pset import capture_print
 
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
@@ -48,15 +49,27 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
 
     # answering pyramid questions
     answers = {}
+    
+    # anwser for pyramid_24
+    with capture_print() as std:
+        print_pyramid(24)
+    std.seek(0)
+    output = std.read()
+    answers["pyramid_24"] = hashlib.sha256(output.encode()).hexdigest()
 
-    answers["pyramid_24"] = generate_pyramid(24)
-    answers["pyramid_53"] = generate_pyramid(53)
+    # anwser for pyramid_53
+    with capture_print() as std:
+        print_pyramid(53)
+    std.seek(0)
+    output = std.read()
+    answers["pyramid_53"] = hashlib.sha256(output.encode()).hexdigest()
 
-    tmp = {'id': questions[0].id, "answers": answers}
+    tmp = {'id': questions[1].id, "answers": answers}
+
     submission.append(tmp)
 
     # answering time question
-    tmp = {'id': questions[0].id, "answers": 3268}
+    tmp = {'id': questions[2].id, "answers": 3268}
     submission.append(tmp)
 
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
