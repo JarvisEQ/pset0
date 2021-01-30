@@ -63,7 +63,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
         print_pyramid(53)
     std.seek(0)
     output = std.read()
-    output = hashlib.sha256(output.encode())
+    output = hashlib.sha256(output.encode()).hexdigest()
     answers["pyramid_53"] = output[:8]
 
     tmp = {'id': questions[1].id, "answer": answers}
