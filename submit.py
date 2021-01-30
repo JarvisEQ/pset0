@@ -33,16 +33,16 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     
     # summable questions
     seq = SummableSequence(0, 1)
-    answers["fib_234202"] =last_8(seq(100000))
+    answers["summable_0_1_100000"] =last_8(seq(100000))
 
     seq = SummableSequence(5, 7, 11)
-    answers["fib_234202"] = last_8(seq(100000))
+    answers["summable_5_7_11_100000"] = last_8(seq(100000))
 
     seq = SummableSequence(5, 98, 7, 35, 2)
-    answers["fib_234202"] = last_8(seq(603))
+    answers["summable_5_98_7_35_2_603"] = last_8(seq(603))
 
     seq = SummableSequence(8, 9, 99)
-    answers["fib_234202"] = last_8(seq(141515))
+    answers["summable_8_9_99_141515"] = last_8(seq(141515))
 
     tmp = {'id': questions[0].id, "answers": answers}
     submission.append(tmp)
@@ -55,14 +55,16 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
         print_pyramid(24)
     std.seek(0)
     output = std.read()
-    answers["pyramid_24"] = hashlib.sha256(output.encode()).hexdigest()
+    output = hashlib.sha256(output.encode()).hexdigest()
+    answers["pyramid_24"] = output[:8]
 
     # anwser for pyramid_53
     with capture_print() as std:
         print_pyramid(53)
     std.seek(0)
     output = std.read()
-    answers["pyramid_53"] = hashlib.sha256(output.encode()).hexdigest()
+    output = hashlib.sha256(output.encode()).hexdigest()
+    answers["pyramid_53"] = output[:8]
 
     tmp = {'id': questions[1].id, "answers": answers}
     submission.append(tmp)
