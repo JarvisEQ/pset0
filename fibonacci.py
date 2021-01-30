@@ -41,14 +41,11 @@ class SummableSequence(object):
 
     def __call__(self, f):
 
-        mem = []
-        for i in range(f + 1):
+        mem = self.initial
+        for i in range(len(self.initial), f + 1):
 
-            if i < len(self.initial):
-                mem.append(self.initial[i])
-            else:
-                tmp = mem[i - 1] + mem[i - 2]
-                mem.append(tmp)
+            tmp = mem[i - 1] + mem[i - 2]
+            mem.append(tmp)
 
         return mem[f]
 
