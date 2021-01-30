@@ -14,13 +14,14 @@ from pyramid import print_pyramid
 from fibonacci import last_8, SummableSequence, optimized_fibonacci
 from test_pset import capture_print
 
+
 def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     """Creates answers for Canvas quiz questions"""
     # Formulate your answers - see docs for QuizSubmission.answer_submission_questions below
     # It should be a list of dicts, one per q, each with an 'id' and 'answer' field
     # The format of the 'answer' field depends on the question type
     # You are responsible for collating questions with the functions to call - do not hard code
-    
+
     # submission list
     submission = []
 
@@ -30,10 +31,10 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     # optimised fibonacci questions
     answers["fib_100000"] = last_8(optimized_fibonacci(100000))
     answers["fib_234202"] = last_8(optimized_fibonacci(234202))
-    
+
     # summable questions
     seq = SummableSequence(0, 1)
-    answers["summable_0_1_100000"] =last_8(seq(100000))
+    answers["summable_0_1_100000"] = last_8(seq(100000))
 
     seq = SummableSequence(5, 7, 11)
     answers["summable_5_7_11_100000"] = last_8(seq(100000))
@@ -44,12 +45,12 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     seq = SummableSequence(8, 9, 99)
     answers["summable_8_9_99_141515"] = last_8(seq(141515))
 
-    tmp = {'id': questions[0].id, "answer": answers}
+    tmp = {"id": questions[0].id, "answer": answers}
     submission.append(tmp)
 
     # answering pyramid questions
     answers = {}
-    
+
     # anwser for pyramid_24
     with capture_print() as std:
         print_pyramid(24)
@@ -66,12 +67,12 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     output = hashlib.sha256(output.encode()).hexdigest()
     answers["pyramid_53"] = output[:8]
 
-    tmp = {'id': questions[1].id, "answer": answers}
+    tmp = {"id": questions[1].id, "answer": answers}
 
     submission.append(tmp)
 
     # answering time question
-    tmp = {'id': questions[2].id, "answer": 3268}
+    tmp = {"id": questions[2].id, "answer": 3268}
     submission.append(tmp)
 
     # eg {"id": questions[0].id, "answer": {key: some_func(key) for key in questions[0].answer.keys()}}
