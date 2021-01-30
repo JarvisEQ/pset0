@@ -50,7 +50,7 @@ def get_answers(questions: List[QuizSubmissionQuestion]) -> List[Dict]:
     answers = {}
 
     answers["pyramid_24"] = generate_pyramid(24)
-    answers["pyramid_53"] = append(generate_pyramid(53))
+    answers["pyramid_53"] = generate_pyramid(53)
 
     tmp = {'id': questions[0].id, "answers": answers}
     submission.append(tmp)
